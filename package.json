@@ -1,0 +1,11 @@
+{
+  "name": "manascript",
+  "version": "0.1.0",
+  "description": "A modern compiler for the Manascript language",
+  "private": true,
+  "scripts": {
+    "build": "cmake -B build && cmake --build build",
+    "test": "cd build && ctest",
+    "clean": "rm -rf build"
+  }
+}

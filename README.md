@@ -1,110 +1,103 @@
-# 🔤 Mana Script
+# Manascript Compiler
 
-**Mana Script** is a lightweight, LLVM-based programming language designed for simplicity and performance. Inspired by the [LLVM Kaleidoscope tutorial](https://llvm.org/docs/tutorial/), it demonstrates how to build a custom language from scratch—starting with a lexer and parser, progressing to LLVM IR code generation, and incorporating JIT compilation.
+A modern compiler for the Manascript programming language, implemented in C++.
 
----
+## Features
 
-## 📚 Chapters Implemented
+- Simple Finite-State Lexer
+- Recursive Descent / LL(1) Parser
+- Abstract Syntax Tree generation
+- LLVM IR Code Generation
+- Basic JIT Compilation using LLVM
 
-### ✅ Chapter 1: Lexer & Basic Parsing
+## Project Structure
 
-* Implements a tokenizer using Finite State Automata (FSA)
-* Parses basic identifiers, numbers, and operators
-* Builds a simple Abstract Syntax Tree (AST)
-
-### ✅ Chapter 2: Code Generation to LLVM IR
-
-* Converts AST into LLVM Intermediate Representation
-* Generates and prints IR using LLVM C++ API
-
----
-
-## ⚡ Features
-
-* ✅ Simple Finite-State Lexer
-* ✅ Recursive Descent / LL(1) Parser
-* ✅ Abstract Syntax Tree generation
-* ✅ LLVM IR Code Generation
-* ✅ Basic JIT Compilation using LLVM
-* ⚙️ Extensible Architecture (control flow, functions, user-defined operators in progress)
-
----
-
-## 📂 Folder Structure
-
-```bash
-mana-script/
-├── src/            # Compiler source (lexer, parser, codegen)
-├── examples/       # Sample .mana programs
-├── build/          # Build output
-├── CMakeLists.txt  # Build config
-└── README.md       # Project documentation
+```
+manascript/
+├── CMakeLists.txt       # Build configuration
+├── README.md            # Project documentation
+├── include/             # Header files
+│   ├── lexer.hpp        # Lexical analyzer
+│   ├── parser.hpp       # Syntax analyzer
+│   ├── ast.hpp          # Abstract Syntax Tree definitions
+│   ├── transpiler.hpp   # Manascript to C++ transpiler
+│   └── codegen.hpp      # LLVM IR code generator
+├── src/                 # Source files
+│   ├── main.cpp         # Main entry point
+│   ├── lexer.cpp        # Lexer implementation
+│   ├── parser.cpp       # Parser implementation
+│   ├── ast.cpp          # AST implementation
+│   └── transpiler.cpp   # Transpiler implementation
+├── examples/            # Example programs
+│   └── hello.mana       # Hello World in Manascript
+├── output/              # Generated output files
+│   └── hello.cpp        # Transpiled C++ code
+├── tests/               # Test files
+│   └── test_lexer.cpp   # Lexer tests
+├── scripts/             # Build scripts
+│   └── build.bat        # Windows build script
+└── doc/                 # Documentation
+    └── design.md        # Design document
 ```
 
----
+## Building
 
-## 👥 Team Members
+### Prerequisites
 
-* **Manu**
-* **Ayush Debnath**
-* **Mohd. Adnan**
-* **Manish Singh Rathaur**
+- CMake 3.10 or later
+- LLVM 10.0 or later
+- C++17 compatible compiler
 
----
-
-## 🛠️ Getting Started
-
-### ✅ Prerequisites
-
-* C++17 or later
-* [LLVM](https://llvm.org/) (version 15.0+ recommended)
-* [CMake](https://cmake.org/) (3.15+)
-* Git
-
-> 💡 Works on Windows, Linux, and macOS (Tested primarily on Windows)
-
-### 🔧 Build & Run Instructions
+### Build Steps
 
 ```bash
-# Clone the repo
-git clone https://github.com/adnanis78612/mana-script.git
-cd mana-script
-
-# Create a build directory
-mkdir build && cd build
-
-# Configure and build
-dependency: helm package
+mkdir build
+cd build
 cmake ..
-cmake --build . --config Release
-
-# Run mana-script (example)
-./mana ../examples/hello.mana
+cmake --build .
 ```
 
-> On Windows, run `mana.exe` instead of `./mana`.
+## Usage
 
----
+```bash
+# Compile and run Manascript program
+./manascript examples/hello.mana
 
-## 🤝 Contributing
+# Emit LLVM IR
+./manascript --emit-llvm examples/hello.mana
 
-Contributions are welcome! If you have suggestions, bug reports, or feature ideas, feel free to:
+# Transpile to C++
+./manascript --emit-cpp examples/hello.mana
 
-* Open an Issue
-* Create a Pull Request
-* Fork and experiment!
+# JIT compile and run
+./manascript --jit examples/hello.mana
 
----
+# Dump tokens
+./manascript --dump-tokens examples/hello.mana
+```
 
-## 📜 License
+## Language Features
 
-This project is released under the MIT License.
+Manascript is a simple, statically-typed programming language with a C-like syntax. It supports:
 
----
+- Variables and constants
+- Basic data types: integers, floats, booleans, strings
+- Functions with parameters and return values
+- Control flow statements: if/else, while loops
+- Arithmetic and logical operators
+- Comments (line and block)
 
-## 📎 References
+## Example Program
 
-* [LLVM Official Docs](https://llvm.org/docs/)
-* *Compilers: Principles, Techniques, and Tools* – Aho, Lam, Sethi, Ullman
-* *Lex & Yacc* by John Levine
+```javascript
+// Hello World program in Manascript
 
+function main() {
+    print("Hello, World!");
+    return 0;
+}
+```
+
+## License
+
+This project is open source under the MIT license.

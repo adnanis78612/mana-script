@@ -64,5 +64,3 @@ public:
 };
 
 } // namespace mana
-
-#endif // MANASCRIPT_LEXER_HPP// Adding lexer.hpp from Ayush-Debnath
